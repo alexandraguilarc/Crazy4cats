@@ -10,9 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_09_171044) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_09_173947) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "adventures", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "when_went"
+    t.bigint "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_adventures_on_country_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.bigint "adventure_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["adventure_id"], name: "index_comments_on_adventure_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reactions", force: :cascade do |t|
+    t.bigint "adventure_id", null: false
+    t.bigint "user_id"
+    t.string "kind"
+    t.string "reaction_type"
+    t.bigint "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["adventure_id"], name: "index_reactions_on_adventure_id"
+    t.index ["comment_id"], name: "index_reactions_on_comment_id"
+    t.index ["user_id"], name: "index_reactions_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,4 +67,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_09_171044) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "adventures", "countries"
+  add_foreign_key "comments", "adventures"
+  add_foreign_key "comments", "users"
+  add_foreign_key "reactions", "adventures"
+  add_foreign_key "reactions", "comments"
+  add_foreign_key "reactions", "users"
 end
