@@ -99,7 +99,7 @@ Este proyecto es de código abierto y las contribuciones son bienvenidas. Siente
 
 ## Versionado 📌
 
-Usamos [Git](https://git-scm.com) para el versionado. Para las versiones disponibles, ve las [etiquetas en este repositorio](https://github.com/alexandraguilarc/howarts_rails).
+Usamos [Git](https://git-scm.com) para el versionado. Para las versiones disponibles, ve las [etiquetas en este repositorio](git@github.com:alexandraguilarc/Crazy4cats.git).
 
 ## Autores ✒️
 
