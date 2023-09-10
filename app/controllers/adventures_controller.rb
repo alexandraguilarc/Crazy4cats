@@ -8,6 +8,8 @@ class AdventuresController < ApplicationController
 
   # GET /adventures/1 or /adventures/1.json
   def show
+    @comment = Comment.new
+    @comments = @adventure.comments
   end
 
   # GET /adventures/new
