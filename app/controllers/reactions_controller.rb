@@ -20,5 +20,3 @@ class ReactionsController < ApplicationController
                 end
         end
         end
-    end    
-end
