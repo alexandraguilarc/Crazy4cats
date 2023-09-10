@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_09_173947) do
   end
 
   create_table "reactions", force: :cascade do |t|
-    t.bigint "adventure_id", null: false
+    t.bigint "adventure_id"
     t.bigint "user_id"
     t.string "kind"
     t.string "reaction_type"
